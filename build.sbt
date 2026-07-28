@@ -57,7 +57,7 @@ lazy val backbench = project.settings(common_settings: _*).settings(
   libraryDependencies ++= (common_deps ++ ycsb),
   // this enables custom javaOptions
   fork in run := true
-).dependsOn(common, sickstore_binding, redis_binding) configs (MultiJvm)
+).dependsOn(common, redis_binding) configs (MultiJvm)
 
 lazy val repl = project.settings(common_settings: _*).settings(
   libraryDependencies ++= (common_deps),

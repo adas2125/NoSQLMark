@@ -103,6 +103,10 @@ object Dependencies {
 
   val ycsb_core = Seq("com.yahoo.ycsb" % "core" % ycsb_version)
 
+  val ycsb_mongodb = Seq(
+    ("com.yahoo.ycsb" % "mongodb-binding" % ycsb_version).
+      exclude("com.allanbank", "mongodb-async-driver"))
+
   val ycsb_bindings = Seq(
     //"com.yahoo.ycsb" % "accumulo-binding" % ycsb_version,
     "com.yahoo.ycsb" % "aerospike-binding" % ycsb_version,
@@ -143,7 +147,7 @@ object Dependencies {
     "com.yahoo.ycsb" % "solr6-binding" % ycsb_version,
     "com.yahoo.ycsb" % "tarantool-binding" % ycsb_version)
 
-  val ycsb = (excluded_ycsb_deps ++ logging_deps ++ ycsb_core ++ ycsb_bindings ++ jacksons).
+  val ycsb = (excluded_ycsb_deps ++ logging_deps ++ ycsb_core ++ ycsb_mongodb ++ jacksons).
     excluding("org.jboss.netty", "netty").
     excluding("org.hdrhistogram", "HdrHistogram").
     excluding("jline", "jline").

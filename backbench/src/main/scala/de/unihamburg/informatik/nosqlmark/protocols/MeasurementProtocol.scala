@@ -1,7 +1,6 @@
 package de.unihamburg.informatik.nosqlmark.protocols
 
 import akka.actor.ActorRef
-import de.unihamburg.sickstore.backend.anomaly.clientdelay.Throughput
 
 /**
  * Created by Steffen Friedrich on 12.08.2015.

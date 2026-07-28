@@ -4,7 +4,6 @@ import akka.actor._
 import akka.cluster.client.ClusterClient
 import akka.event.Logging
 import akka.serialization.Serialization
-import com.orientechnologies.orient.core.storage.cache.OSnowFlakeIdGen
 import de.unihamburg.informatik.nosqlmark.db.NoSQLMarkDBFactory
 import de.unihamburg.informatik.nosqlmark.measurements.{MeasurementsActor, MeasurementsAggregator}
 import de.unihamburg.informatik.nosqlmark.protocols.ClusterProtocol._
