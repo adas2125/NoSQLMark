@@ -1,0 +1,145 @@
+LAST SEEN   TYPE      REASON                   OBJECT                                                           MESSAGE
+52m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-h5ntx           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-h5ntx to i-0f4a2ec2693d23bd5
+52m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-f4sfw
+52m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-5x6vt
+52m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-5x6vt           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-5x6vt to i-091443c764376d8ba
+52m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-h5ntx
+52m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-c4bdf
+52m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-c4bdf           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-c4bdf to i-0c4d45abf9869abf0
+52m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-f4sfw           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-f4sfw to i-00ecc4734204a6c6e
+52m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-f4sfw           Started container node-exporter
+52m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-h5ntx           Started container node-exporter
+52m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-5x6vt           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+52m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-h5ntx           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+52m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-5x6vt           Created container: node-exporter
+52m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-5x6vt           Started container node-exporter
+52m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-f4sfw           Created container: node-exporter
+52m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-f4sfw           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+52m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-h5ntx           Created container: node-exporter
+52m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-c4bdf           Started container node-exporter
+52m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-c4bdf           Created container: node-exporter
+52m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-c4bdf           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+52m         Normal    SuccessfulCreate         replicaset/my-mongodb-sharded-mongos-7cd99f4d79                  Created pod: my-mongodb-sharded-mongos-7cd99f4d79-jslhd
+52m         Normal    Scheduled                pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-mongos-7cd99f4d79-jslhd to i-063b793db694be24c
+52m         Normal    ScalingReplicaSet        deployment/my-mongodb-sharded-mongos                             Scaled up replica set my-mongodb-sharded-mongos-7cd99f4d79 from 0 to 3
+52m         Normal    NoPods                   poddisruptionbudget/my-mongodb-sharded-configsvr                 No matching pods found
+52m         Normal    NoPods                   poddisruptionbudget/my-mongodb-sharded-mongos                    No matching pods found
+52m         Normal    NoPods                   poddisruptionbudget/my-mongodb-sharded-shard0-data               No matching pods found
+52m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-0     waiting for first consumer to be created before binding
+52m         Normal    SuccessfulCreate         replicaset/my-mongodb-sharded-mongos-7cd99f4d79                  Created pod: my-mongodb-sharded-mongos-7cd99f4d79-75xx6
+52m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-shard0-data-0   External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-shard0-data-0"
+52m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard0-data                       create Pod my-mongodb-sharded-shard0-data-0 in StatefulSet my-mongodb-sharded-shard0-data successful
+52m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard0-data                       create Claim datadir-my-mongodb-sharded-shard0-data-0 Pod my-mongodb-sharded-shard0-data-0 in StatefulSet my-mongodb-sharded-shard0-data success
+52m         Normal    Created                  pod/my-mongodb-sharded-mongos-7cd99f4d79-75xx6                   Created container: mongos
+52m         Normal    Pulled                   pod/my-mongodb-sharded-mongos-7cd99f4d79-75xx6                   Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+52m         Normal    Scheduled                pod/my-mongodb-sharded-mongos-7cd99f4d79-75xx6                   Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-mongos-7cd99f4d79-75xx6 to i-0188da2a87c4380bc
+52m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Pod my-mongodb-sharded-configsvr-0 in StatefulSet my-mongodb-sharded-configsvr successful
+52m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Claim datadir-my-mongodb-sharded-configsvr-0 Pod my-mongodb-sharded-configsvr-0 in StatefulSet my-mongodb-sharded-configsvr success
+52m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-shard0-data-0   waiting for first consumer to be created before binding
+52m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-0     Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+52m         Normal    Scheduled                pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-mongos-7cd99f4d79-d72sx to i-01a5857cf7598b7f8
+52m         Normal    Pulled                   pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+52m         Normal    Created                  pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Created container: mongos
+52m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-shard0-data-0   Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+52m         Normal    Pulled                   pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+52m         Normal    Created                  pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Created container: mongos
+52m         Normal    Started                  pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Started container mongos
+52m         Normal    SuccessfulCreate         replicaset/my-mongodb-sharded-mongos-7cd99f4d79                  Created pod: my-mongodb-sharded-mongos-7cd99f4d79-d72sx
+52m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-0     External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-configsvr-0"
+52m         Normal    Started                  pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Started container mongos
+52m         Normal    Started                  pod/my-mongodb-sharded-mongos-7cd99f4d79-75xx6                   Started container mongos
+52m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-0     Successfully provisioned volume pvc-e334a7d1-e35f-4ac1-8b9e-82e299c16f14
+52m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-shard0-data-0   Successfully provisioned volume pvc-a3c1027f-8f39-4840-a59d-9ca6e17528d6
+52m         Normal    Scheduled                pod/my-mongodb-sharded-configsvr-0                               Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-configsvr-0 to i-063b793db694be24c
+52m         Normal    Scheduled                pod/my-mongodb-sharded-shard0-data-0                             Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-shard0-data-0 to i-0c4d45abf9869abf0
+52m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-configsvr-0                               AttachVolume.Attach succeeded for volume "pvc-e334a7d1-e35f-4ac1-8b9e-82e299c16f14"
+52m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-shard0-data-0                             AttachVolume.Attach succeeded for volume "pvc-a3c1027f-8f39-4840-a59d-9ca6e17528d6"
+52m         Normal    Pulled                   pod/my-mongodb-sharded-shard0-data-0                             Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+52m         Normal    Created                  pod/my-mongodb-sharded-shard0-data-0                             Created container: mongodb
+52m         Normal    Started                  pod/my-mongodb-sharded-shard0-data-0                             Started container mongodb
+52m         Normal    Created                  pod/my-mongodb-sharded-configsvr-0                               Created container: mongodb
+52m         Normal    Pulled                   pod/my-mongodb-sharded-configsvr-0                               Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+52m         Normal    Started                  pod/my-mongodb-sharded-configsvr-0                               Started container mongodb
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-configsvr-0                               Startup probe failed: dial tcp 100.96.2.186:27017: connect: connection refused
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-mongos-7cd99f4d79-75xx6                   Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+51m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Claim datadir-my-mongodb-sharded-configsvr-1 Pod my-mongodb-sharded-configsvr-1 in StatefulSet my-mongodb-sharded-configsvr success
+51m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-1     External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-configsvr-1"
+51m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-1     Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+51m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-1     waiting for first consumer to be created before binding
+50m         Warning   Unhealthy                pod/my-mongodb-sharded-shard0-data-0                             Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+51m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Pod my-mongodb-sharded-configsvr-1 in StatefulSet my-mongodb-sharded-configsvr successful
+51m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-1     Successfully provisioned volume pvc-b044d53f-9ef0-4a4a-b5ec-27a572456966
+51m         Normal    Scheduled                pod/my-mongodb-sharded-configsvr-1                               Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-configsvr-1 to i-01a5857cf7598b7f8
+51m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-configsvr-1                               AttachVolume.Attach succeeded for volume "pvc-b044d53f-9ef0-4a4a-b5ec-27a572456966"
+51m         Normal    Pulled                   pod/my-mongodb-sharded-configsvr-1                               Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+51m         Normal    Created                  pod/my-mongodb-sharded-configsvr-1                               Created container: mongodb
+51m         Normal    Started                  pod/my-mongodb-sharded-configsvr-1                               Started container mongodb
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-mongos-7cd99f4d79-jslhd                   Liveness probe failed:
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-mongos-7cd99f4d79-d72sx                   Liveness probe failed:
+51m         Warning   Unhealthy                pod/my-mongodb-sharded-configsvr-1                               Startup probe failed: dial tcp 100.96.1.199:27017: connect: connection refused
+50m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-2     External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-configsvr-2"
+50m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Claim datadir-my-mongodb-sharded-configsvr-2 Pod my-mongodb-sharded-configsvr-2 in StatefulSet my-mongodb-sharded-configsvr success
+50m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-2     waiting for first consumer to be created before binding
+50m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-2     Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+50m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-configsvr                         create Pod my-mongodb-sharded-configsvr-2 in StatefulSet my-mongodb-sharded-configsvr successful
+50m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-configsvr-2     Successfully provisioned volume pvc-2864303a-dde6-493b-832a-9b8a2e74c3e5
+50m         Normal    Scheduled                pod/my-mongodb-sharded-configsvr-2                               Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-configsvr-2 to i-0188da2a87c4380bc
+50m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-configsvr-2                               AttachVolume.Attach succeeded for volume "pvc-2864303a-dde6-493b-832a-9b8a2e74c3e5"
+50m         Normal    Pulled                   pod/my-mongodb-sharded-configsvr-2                               Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+50m         Normal    Created                  pod/my-mongodb-sharded-configsvr-2                               Created container: mongodb
+50m         Normal    Started                  pod/my-mongodb-sharded-configsvr-2                               Started container mongodb
+50m         Warning   Unhealthy                pod/my-mongodb-sharded-configsvr-2                               Startup probe failed: dial tcp 100.96.3.86:27017: connect: connection refused
+49m         Warning   Unhealthy                pod/my-mongodb-sharded-configsvr-2                               Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+49m         Normal    ScalingReplicaSet        deployment/mongodb-exporter                                      Scaled up replica set mongodb-exporter-7fd8d98647 from 0 to 1
+49m         Normal    Pulling                  pod/mongodb-exporter-7fd8d98647-zpbw2                            Pulling image "bitnami/mongodb-exporter:latest"
+49m         Normal    SuccessfulCreate         replicaset/mongodb-exporter-7fd8d98647                           Created pod: mongodb-exporter-7fd8d98647-zpbw2
+49m         Normal    Scheduled                pod/mongodb-exporter-7fd8d98647-zpbw2                            Successfully assigned mambo-mongod-cpu/mongodb-exporter-7fd8d98647-zpbw2 to i-0f4a2ec2693d23bd5
+49m         Normal    Created                  pod/mongodb-exporter-7fd8d98647-zpbw2                            Created container: mongodb-exporter
+49m         Normal    Started                  pod/mongodb-exporter-7fd8d98647-zpbw2                            Started container mongodb-exporter
+49m         Normal    Pulled                   pod/mongodb-exporter-7fd8d98647-zpbw2                            Successfully pulled image "bitnami/mongodb-exporter:latest" in 2.646s (2.646s including waiting). Image size: 47115156 bytes.
+48m         Normal    Scheduled                pod/ycsb-test                                                    Successfully assigned mambo-mongod-cpu/ycsb-test to i-063b793db694be24c
+48m         Normal    Started                  pod/ycsb-test                                                    Started container ycsb-test
+48m         Normal    Created                  pod/ycsb-test                                                    Created container: ycsb-test
+48m         Normal    Pulled                   pod/ycsb-test                                                    Container image "maven:3.8-openjdk-11" already present on machine
+21m         Normal    Scheduled                pod/mongodb-shell                                                Successfully assigned mambo-mongod-cpu/mongodb-shell to i-063b793db694be24c
+21m         Normal    Started                  pod/mongodb-shell                                                Started container mongodb-shell
+21m         Normal    Created                  pod/mongodb-shell                                                Created container: mongodb-shell
+21m         Normal    Pulled                   pod/mongodb-shell                                                Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+17m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+17m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-shard1-data-0"
+17m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard1-data                       create Pod my-mongodb-sharded-shard1-data-0 in StatefulSet my-mongodb-sharded-shard1-data successful
+17m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard1-data                       create Claim datadir-my-mongodb-sharded-shard1-data-0 Pod my-mongodb-sharded-shard1-data-0 in StatefulSet my-mongodb-sharded-shard1-data success
+17m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   waiting for first consumer to be created before binding
+17m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   Successfully provisioned volume pvc-cd46949d-df97-4083-a348-a729b4de2488
+17m         Normal    Scheduled                pod/my-mongodb-sharded-shard1-data-0                             Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-shard1-data-0 to i-00ecc4734204a6c6e
+17m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-shard1-data-0                             AttachVolume.Attach succeeded for volume "pvc-cd46949d-df97-4083-a348-a729b4de2488"
+17m         Normal    Created                  pod/my-mongodb-sharded-shard1-data-0                             Created container: mongodb
+17m         Normal    Pulled                   pod/my-mongodb-sharded-shard1-data-0                             Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+17m         Normal    Started                  pod/my-mongodb-sharded-shard1-data-0                             Started container mongodb
+16m         Normal    Scheduled                pod/addshard-my-mongodb-sharded-shard-1-9kf4j                    Successfully assigned mambo-mongod-cpu/addshard-my-mongodb-sharded-shard-1-9kf4j to i-091443c764376d8ba
+16m         Normal    SuccessfulCreate         job/addshard-my-mongodb-sharded-shard-1                          Created pod: addshard-my-mongodb-sharded-shard-1-9kf4j
+16m         Normal    Pulling                  pod/addshard-my-mongodb-sharded-shard-1-9kf4j                    Pulling image "mongo:6.0"
+16m         Normal    Started                  pod/addshard-my-mongodb-sharded-shard-1-9kf4j                    Started container addshard
+16m         Normal    Created                  pod/addshard-my-mongodb-sharded-shard-1-9kf4j                    Created container: addshard
+16m         Normal    Pulled                   pod/addshard-my-mongodb-sharded-shard-1-9kf4j                    Successfully pulled image "mongo:6.0" in 8.192s (8.192s including waiting). Image size: 278908424 bytes.
+16m         Normal    Completed                job/addshard-my-mongodb-sharded-shard-1                          Job completed
+10m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard2-data                       create Claim datadir-my-mongodb-sharded-shard2-data-0 Pod my-mongodb-sharded-shard2-data-0 in StatefulSet my-mongodb-sharded-shard2-data success
+10m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard2-data                       create Pod my-mongodb-sharded-shard2-data-0 in StatefulSet my-mongodb-sharded-shard2-data successful
+10m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-shard2-data-0   waiting for first consumer to be created before binding
+10m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-shard2-data-0   External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-shard2-data-0"
+10m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-shard2-data-0   Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+10m         Normal    Scheduled                pod/my-mongodb-sharded-shard2-data-0                             Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-shard2-data-0 to i-091443c764376d8ba
+10m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-shard2-data-0   Successfully provisioned volume pvc-625db07a-1935-4912-9fdc-6c9045984fa2
+10m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-shard2-data-0                             AttachVolume.Attach succeeded for volume "pvc-625db07a-1935-4912-9fdc-6c9045984fa2"
+9m55s       Normal    Pulled                   pod/my-mongodb-sharded-shard2-data-0                             Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+9m55s       Normal    Created                  pod/my-mongodb-sharded-shard2-data-0                             Created container: mongodb
+9m54s       Normal    Started                  pod/my-mongodb-sharded-shard2-data-0                             Started container mongodb
+9m6s        Normal    Scheduled                pod/addshard-my-mongodb-sharded-shard-2-gsz44                    Successfully assigned mambo-mongod-cpu/addshard-my-mongodb-sharded-shard-2-gsz44 to i-0f4a2ec2693d23bd5
+9m6s        Normal    SuccessfulCreate         job/addshard-my-mongodb-sharded-shard-2                          Created pod: addshard-my-mongodb-sharded-shard-2-gsz44
+9m5s        Normal    Pulling                  pod/addshard-my-mongodb-sharded-shard-2-gsz44                    Pulling image "mongo:6.0"
+8m57s       Normal    Pulled                   pod/addshard-my-mongodb-sharded-shard-2-gsz44                    Successfully pulled image "mongo:6.0" in 8.119s (8.119s including waiting). Image size: 278908424 bytes.
+8m57s       Normal    Created                  pod/addshard-my-mongodb-sharded-shard-2-gsz44                    Created container: addshard
+8m57s       Normal    Started                  pod/addshard-my-mongodb-sharded-shard-2-gsz44                    Started container addshard
+8m48s       Normal    Completed                job/addshard-my-mongodb-sharded-shard-2                          Job completed

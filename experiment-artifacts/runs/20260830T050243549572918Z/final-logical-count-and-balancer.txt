@@ -1,0 +1,18 @@
+{
+  logicalCount: 1000000
+}
+{
+  mode: 'full',
+  inBalancerRound: false,
+  numBalancerRounds: Long('318'),
+  term: Long('3'),
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1788069529, i: 486 }),
+    signature: {
+      hash: Binary.createFromBase64('sS6tYvS8pWC8SNfpJgqBoRwOfWQ=', 0),
+      keyId: Long('7679686217155215384')
+    }
+  },
+  operationTime: Timestamp({ t: 1788069528, i: 1 })
+}

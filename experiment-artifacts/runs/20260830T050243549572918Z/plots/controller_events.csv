@@ -1,0 +1,5 @@
+timestamp,label,color
+2026-08-30T05:38:50.530467+00:00,Scale shards 1 to 2,tab:red
+2026-08-30T05:41:20.744529+00:00,Resharding 1 to 2 complete,tab:blue
+2026-08-30T05:46:35.832144+00:00,Scale shards 2 to 3,tab:orange
+2026-08-30T05:48:35.983772+00:00,Resharding 2 to 3 complete,tab:cyan

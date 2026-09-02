@@ -1,0 +1,13 @@
+diff --git a/mongodb/pom.xml b/mongodb/pom.xml
+index 92d3f575..1e4e9946 100644
+--- a/mongodb/pom.xml
++++ b/mongodb/pom.xml
+@@ -83,7 +83,7 @@ LICENSE file.
+       <id>allanbank</id>
+       <name>Allanbank Releases</name>
+       <!-- Does not support HTTPS -->
+-      <url>http://www.allanbank.com/repo/</url>
++      <url>https://www.allanbank.com/repo/</url>
+       <layout>default</layout>
+     </repository>
+   </repositories>

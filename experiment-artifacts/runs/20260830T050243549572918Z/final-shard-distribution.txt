@@ -1,0 +1,82 @@
+{
+  shards: [
+    {
+      _id: 'my-mongodb-sharded-shard-0',
+      host: 'my-mongodb-sharded-shard-0/my-mongodb-sharded-shard0-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017',
+      state: 1,
+      topologyTime: Timestamp({ t: 1788066366, i: 4 }),
+      replSetConfigVersion: Long('2')
+    },
+    {
+      _id: 'my-mongodb-sharded-shard-1',
+      host: 'my-mongodb-sharded-shard-1/my-mongodb-sharded-shard1-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017',
+      state: 1,
+      topologyTime: Timestamp({ t: 1788068394, i: 9 }),
+      replSetConfigVersion: Long('2')
+    },
+    {
+      _id: 'my-mongodb-sharded-shard-2',
+      host: 'my-mongodb-sharded-shard-2/my-mongodb-sharded-shard2-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017',
+      state: 1,
+      topologyTime: Timestamp({ t: 1788068863, i: 9 }),
+      replSetConfigVersion: Long('2')
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1788069407, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('EN4U+FfLCD5ZVT30FB4Vpftghd8=', 0),
+      keyId: Long('7679686217155215384')
+    }
+  },
+  operationTime: Timestamp({ t: 1788069407, i: 1 })
+}
+Shard my-mongodb-sharded-shard-1 at my-mongodb-sharded-shard-1/my-mongodb-sharded-shard1-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017
+{
+  data: '384.28MiB',
+  docs: 345027,
+  chunks: 3,
+  'estimated data per chunk': '128.09MiB',
+  'estimated docs per chunk': 115009
+}
+---
+Shard my-mongodb-sharded-shard-2 at my-mongodb-sharded-shard-2/my-mongodb-sharded-shard2-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017
+{
+  data: '256.19MiB',
+  docs: 230018,
+  chunks: 2,
+  'estimated data per chunk': '128.09MiB',
+  'estimated docs per chunk': 115009
+}
+---
+Shard my-mongodb-sharded-shard-0 at my-mongodb-sharded-shard-0/my-mongodb-sharded-shard0-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017
+{
+  data: '466.42MiB',
+  docs: 878473,
+  chunks: 1,
+  'estimated data per chunk': '466.42MiB',
+  'estimated docs per chunk': 878473
+}
+---
+Totals
+{
+  data: '1.08GiB',
+  docs: 1453518,
+  chunks: 6,
+  'Shard my-mongodb-sharded-shard-1': [
+    '34.71 % data',
+    '23.73 % docs in cluster',
+    '1KiB avg obj size on shard'
+  ],
+  'Shard my-mongodb-sharded-shard-2': [
+    '23.14 % data',
+    '15.82 % docs in cluster',
+    '1KiB avg obj size on shard'
+  ],
+  'Shard my-mongodb-sharded-shard-0': [
+    '42.13 % data',
+    '60.43 % docs in cluster',
+    '1KiB avg obj size on shard'
+  ]
+}

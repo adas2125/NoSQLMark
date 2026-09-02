@@ -1,0 +1,773 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: my-mongodb-sharded
+      meta.helm.sh/release-namespace: mambo-mongod-cpu
+    creationTimestamp: "2026-08-30T02:19:22Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/component: configsvr
+      app.kubernetes.io/instance: my-mongodb-sharded
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: mongodb-sharded
+      app.kubernetes.io/version: 8.0.13
+      helm.sh/chart: mongodb-sharded-9.4.12
+    name: my-mongodb-sharded-configsvr
+    namespace: mambo-mongod-cpu
+    resourceVersion: "10570259"
+    uid: bd311b79-525a-40ce-a05c-8a6724918406
+  spec:
+    persistentVolumeClaimRetentionPolicy:
+      whenDeleted: Retain
+      whenScaled: Retain
+    podManagementPolicy: OrderedReady
+    replicas: 3
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: configsvr
+        app.kubernetes.io/instance: my-mongodb-sharded
+        app.kubernetes.io/name: mongodb-sharded
+    serviceName: my-mongodb-sharded-headless
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: configsvr
+          app.kubernetes.io/instance: my-mongodb-sharded
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/name: mongodb-sharded
+          app.kubernetes.io/version: 8.0.13
+          helm.sh/chart: mongodb-sharded-9.4.12
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: node.kubernetes.io/instance-type
+                  operator: In
+                  values:
+                  - m5a.large
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                    - configsvr
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+        automountServiceAccountToken: false
+        containers:
+        - command:
+          - /bin/bash
+          - /entrypoint/replicaset-entrypoint.sh
+          env:
+          - name: MONGODB_ENABLE_NUMACTL
+            value: "no"
+          - name: BITNAMI_DEBUG
+            value: "false"
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_INIT_RETRY_ATTEMPTS
+            value: "24"
+          - name: MONGODB_INIT_RETRY_DELAY
+            value: "5"
+          - name: MONGODB_SHARDING_MODE
+            value: configsvr
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MONGODB_PORT_NUMBER
+            value: "27017"
+          - name: MONGODB_INITIAL_PRIMARY_HOST
+            value: my-mongodb-sharded-configsvr-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_REPLICA_SET_NAME
+            value: my-mongodb-sharded-configsvr
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: $(MONGODB_POD_NAME).my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_ROOT_USER
+            value: root
+          - name: MONGODB_ROOT_PASSWORD_FILE
+            value: /bitnami/mongodb/secrets/mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY_FILE
+            value: /bitnami/mongodb/secrets/mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "no"
+          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
+            value: "no"
+          image: docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - pgrep
+              - mongod
+            failureThreshold: 2
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            name: mongodb
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - mongosh --port $MONGODB_PORT_NUMBER --eval "db.adminCommand('ping')"
+            failureThreshold: 6
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+            seLinuxOptions: {}
+            seccompProfile:
+              type: RuntimeDefault
+          startupProbe:
+            failureThreshold: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: mongodb
+            timeoutSeconds: 5
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /tmp
+            name: empty-dir
+            subPath: tmp-dir
+          - mountPath: /opt/bitnami/mongodb/conf
+            name: empty-dir
+            subPath: app-conf-dir
+          - mountPath: /opt/bitnami/mongodb/tmp
+            name: empty-dir
+            subPath: app-tmp-dir
+          - mountPath: /opt/bitnami/mongodb/logs
+            name: empty-dir
+            subPath: app-logs-dir
+          - mountPath: /.mongodb
+            name: empty-dir
+            subPath: app-mongosh-dir
+          - mountPath: /entrypoint
+            name: replicaset-entrypoint-configmap
+          - mountPath: /bitnami/mongodb
+            name: datadir
+          - mountPath: /bitnami/mongodb/secrets/
+            name: secrets
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1001
+          fsGroupChangePolicy: Always
+        serviceAccount: my-mongodb-sharded-configsvr
+        serviceAccountName: my-mongodb-sharded-configsvr
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: empty-dir
+        - configMap:
+            defaultMode: 420
+            name: my-mongodb-sharded-replicaset-entrypoint
+          name: replicaset-entrypoint-configmap
+        - name: secrets
+          secret:
+            defaultMode: 420
+            secretName: my-mongodb-sharded
+    updateStrategy:
+      type: RollingUpdate
+    volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: datadir
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: kops-csi-1-21
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  status:
+    availableReplicas: 3
+    collisionCount: 0
+    currentReplicas: 3
+    currentRevision: my-mongodb-sharded-configsvr-7985f58c87
+    observedGeneration: 1
+    readyReplicas: 3
+    replicas: 3
+    updateRevision: my-mongodb-sharded-configsvr-7985f58c87
+    updatedReplicas: 3
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: my-mongodb-sharded
+      meta.helm.sh/release-namespace: mambo-mongod-cpu
+    creationTimestamp: "2026-08-30T02:19:22Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: shardsvr
+      app.kubernetes.io/instance: my-mongodb-sharded
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: mongodb-sharded
+      app.kubernetes.io/version: 8.0.13
+      helm.sh/chart: mongodb-sharded-9.4.12
+    name: my-mongodb-sharded-shard0-data
+    namespace: mambo-mongod-cpu
+    resourceVersion: "10585140"
+    uid: c8aa547a-daec-43af-b4c2-9de7e4a9b3b0
+  spec:
+    persistentVolumeClaimRetentionPolicy:
+      whenDeleted: Retain
+      whenScaled: Retain
+    podManagementPolicy: OrderedReady
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: shardsvr
+        app.kubernetes.io/instance: my-mongodb-sharded
+        app.kubernetes.io/name: mongodb-sharded
+    serviceName: my-mongodb-sharded-headless
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: shardsvr
+          app.kubernetes.io/instance: my-mongodb-sharded
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/name: mongodb-sharded
+          app.kubernetes.io/version: 8.0.13
+          helm.sh/chart: mongodb-sharded-9.4.12
+          shard: "0"
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - i-00ecc4734204a6c6e
+                  - i-0f4a2ec2693d23bd5
+                  - i-091443c764376d8ba
+                  - i-0c4d45abf9869abf0
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/component
+                  operator: In
+                  values:
+                  - shardsvr
+              topologyKey: kubernetes.io/hostname
+        automountServiceAccountToken: false
+        containers:
+        - command:
+          - /bin/bash
+          - /entrypoint/replicaset-entrypoint.sh
+          env:
+          - name: MONGODB_ENABLE_NUMACTL
+            value: "no"
+          - name: BITNAMI_DEBUG
+            value: "false"
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_INIT_RETRY_ATTEMPTS
+            value: "24"
+          - name: MONGODB_INIT_RETRY_DELAY
+            value: "5"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_PORT_NUMBER
+            value: "27017"
+          - name: MONGODB_SHARDING_MODE
+            value: shardsvr
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MONGODB_MONGOS_HOST
+            value: my-mongodb-sharded
+          - name: MONGODB_MONGOS_PORT_NUMBER
+            value: "27017"
+          - name: MONGODB_INITIAL_PRIMARY_HOST
+            value: my-mongodb-sharded-shard0-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_REPLICA_SET_NAME
+            value: my-mongodb-sharded-shard-0
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: $(MONGODB_POD_NAME).my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_ROOT_USER
+            value: root
+          - name: MONGODB_ROOT_PASSWORD_FILE
+            value: /bitnami/mongodb/secrets/mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY_FILE
+            value: /bitnami/mongodb/secrets/mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "no"
+          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
+            value: "no"
+          - name: MONGODB_EXTRA_FLAGS
+            value: --wiredTigerCacheSizeGB=0.25
+          image: docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - pgrep
+              - mongod
+            failureThreshold: 2
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            name: mongodb
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - mongosh --port $MONGODB_PORT_NUMBER --eval "db.adminCommand('ping')"
+            failureThreshold: 6
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+            seLinuxOptions: {}
+            seccompProfile:
+              type: RuntimeDefault
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /tmp
+            name: empty-dir
+            subPath: tmp-dir
+          - mountPath: /opt/bitnami/mongodb/conf
+            name: empty-dir
+            subPath: app-conf-dir
+          - mountPath: /opt/bitnami/mongodb/tmp
+            name: empty-dir
+            subPath: app-tmp-dir
+          - mountPath: /opt/bitnami/mongodb/logs
+            name: empty-dir
+            subPath: app-logs-dir
+          - mountPath: /.mongodb
+            name: empty-dir
+            subPath: app-mongosh-dir
+          - mountPath: /entrypoint
+            name: replicaset-entrypoint-configmap
+          - mountPath: /bitnami/mongodb
+            name: datadir
+          - mountPath: /bitnami/mongodb/secrets/
+            name: secrets
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1001
+          fsGroupChangePolicy: Always
+        serviceAccount: my-mongodb-sharded-shardsvr
+        serviceAccountName: my-mongodb-sharded-shardsvr
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: empty-dir
+        - configMap:
+            defaultMode: 420
+            name: my-mongodb-sharded-replicaset-entrypoint
+          name: replicaset-entrypoint-configmap
+        - name: secrets
+          secret:
+            defaultMode: 420
+            secretName: my-mongodb-sharded
+    updateStrategy:
+      type: RollingUpdate
+    volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: datadir
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 16Gi
+        storageClassName: kops-csi-1-21
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  status:
+    availableReplicas: 2
+    collisionCount: 0
+    currentReplicas: 2
+    currentRevision: my-mongodb-sharded-shard0-data-595c577595
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+    updateRevision: my-mongodb-sharded-shard0-data-595c577595
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    creationTimestamp: "2026-08-30T02:53:59Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: shardsvr
+      app.kubernetes.io/instance: my-mongodb-sharded
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: mongodb-sharded
+      app.kubernetes.io/version: 8.0.13
+      helm.sh/chart: mongodb-sharded-9.4.12
+    name: my-mongodb-sharded-shard1-data
+    namespace: mambo-mongod-cpu
+    resourceVersion: "10583742"
+    uid: 3d5de412-c4c7-427c-a000-6059224741a0
+  spec:
+    persistentVolumeClaimRetentionPolicy:
+      whenDeleted: Retain
+      whenScaled: Retain
+    podManagementPolicy: OrderedReady
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: shardsvr
+        app.kubernetes.io/instance: my-mongodb-sharded
+        app.kubernetes.io/name: mongodb-sharded
+    serviceName: my-mongodb-sharded-headless
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: shardsvr
+          app.kubernetes.io/instance: my-mongodb-sharded
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/name: mongodb-sharded
+          app.kubernetes.io/version: 8.0.13
+          helm.sh/chart: mongodb-sharded-9.4.12
+          shard: "1"
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - i-00ecc4734204a6c6e
+                  - i-0f4a2ec2693d23bd5
+                  - i-091443c764376d8ba
+                  - i-0c4d45abf9869abf0
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/component
+                  operator: In
+                  values:
+                  - shardsvr
+              topologyKey: kubernetes.io/hostname
+        automountServiceAccountToken: false
+        containers:
+        - command:
+          - /bin/bash
+          - /entrypoint/replicaset-entrypoint.sh
+          env:
+          - name: MONGODB_ENABLE_NUMACTL
+            value: "no"
+          - name: BITNAMI_DEBUG
+            value: "false"
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_INIT_RETRY_ATTEMPTS
+            value: "24"
+          - name: MONGODB_INIT_RETRY_DELAY
+            value: "5"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_PORT_NUMBER
+            value: "27017"
+          - name: MONGODB_SHARDING_MODE
+            value: shardsvr
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MONGODB_MONGOS_HOST
+            value: my-mongodb-sharded
+          - name: MONGODB_MONGOS_PORT_NUMBER
+            value: "27017"
+          - name: MONGODB_INITIAL_PRIMARY_HOST
+            value: my-mongodb-sharded-shard1-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_REPLICA_SET_NAME
+            value: my-mongodb-sharded-shard-1
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: $(MONGODB_POD_NAME).my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local
+          - name: MONGODB_ROOT_USER
+            value: root
+          - name: MONGODB_ROOT_PASSWORD_FILE
+            value: /bitnami/mongodb/secrets/mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY_FILE
+            value: /bitnami/mongodb/secrets/mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "no"
+          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
+            value: "no"
+          - name: MONGODB_EXTRA_FLAGS
+            value: --wiredTigerCacheSizeGB=0.25
+          image: docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - pgrep
+              - mongod
+            failureThreshold: 2
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            name: mongodb
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - mongosh --port $MONGODB_PORT_NUMBER --eval "db.adminCommand('ping')"
+            failureThreshold: 6
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 20
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+            seLinuxOptions: {}
+            seccompProfile:
+              type: RuntimeDefault
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /tmp
+            name: empty-dir
+            subPath: tmp-dir
+          - mountPath: /opt/bitnami/mongodb/conf
+            name: empty-dir
+            subPath: app-conf-dir
+          - mountPath: /opt/bitnami/mongodb/tmp
+            name: empty-dir
+            subPath: app-tmp-dir
+          - mountPath: /opt/bitnami/mongodb/logs
+            name: empty-dir
+            subPath: app-logs-dir
+          - mountPath: /.mongodb
+            name: empty-dir
+            subPath: app-mongosh-dir
+          - mountPath: /entrypoint
+            name: replicaset-entrypoint-configmap
+          - mountPath: /bitnami/mongodb
+            name: datadir
+          - mountPath: /bitnami/mongodb/secrets/
+            name: secrets
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1001
+          fsGroupChangePolicy: Always
+        serviceAccount: my-mongodb-sharded-shardsvr
+        serviceAccountName: my-mongodb-sharded-shardsvr
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: empty-dir
+        - configMap:
+            defaultMode: 420
+            name: my-mongodb-sharded-replicaset-entrypoint
+          name: replicaset-entrypoint-configmap
+        - name: secrets
+          secret:
+            defaultMode: 420
+            secretName: my-mongodb-sharded
+    updateStrategy:
+      type: RollingUpdate
+    volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: datadir
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 16Gi
+        storageClassName: kops-csi-1-21
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  status:
+    availableReplicas: 2
+    collisionCount: 0
+    currentReplicas: 2
+    currentRevision: my-mongodb-sharded-shard1-data-85bd7bf864
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+    updateRevision: my-mongodb-sharded-shard1-data-85bd7bf864
+    updatedReplicas: 2
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    creationTimestamp: "2026-08-30T03:44:17Z"
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+      batch.kubernetes.io/job-name: add-membership-my-mongodb-sharded-shard1-data-1
+      controller-uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+      job-name: add-membership-my-mongodb-sharded-shard1-data-1
+    name: add-membership-my-mongodb-sharded-shard1-data-1
+    namespace: mambo-mongod-cpu
+    resourceVersion: "10597459"
+    uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+  spec:
+    backoffLimit: 0
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+    suspend: false
+    template:
+      metadata:
+        labels:
+          batch.kubernetes.io/controller-uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+          batch.kubernetes.io/job-name: add-membership-my-mongodb-sharded-shard1-data-1
+          controller-uid: 9c5a734f-fecb-4beb-b94c-9e43b1ca92c8
+          job-name: add-membership-my-mongodb-sharded-shard1-data-1
+      spec:
+        containers:
+        - args:
+          - mongosh --host my-mongodb-sharded-shard1-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017
+            -u root -p "$MONGODB_ROOT_PASSWORD" --authenticationDatabase admin --quiet
+            --eval 'rs.add("my-mongodb-sharded-shard1-data-1.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017")'
+          command:
+          - /bin/sh
+          - -c
+          env:
+          - name: MONGODB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: mongodb-root-password
+                name: my-mongodb-sharded
+          image: mongo:6.0
+          imagePullPolicy: IfNotPresent
+          name: add-membership
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Never
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    conditions:
+    - lastProbeTime: "2026-08-30T03:44:21Z"
+      lastTransitionTime: "2026-08-30T03:44:21Z"
+      message: Job has reached the specified backoff limit
+      reason: BackoffLimitExceeded
+      status: "True"
+      type: FailureTarget
+    - lastProbeTime: "2026-08-30T03:44:21Z"
+      lastTransitionTime: "2026-08-30T03:44:21Z"
+      message: Job has reached the specified backoff limit
+      reason: BackoffLimitExceeded
+      status: "True"
+      type: Failed
+    failed: 1
+    ready: 0
+    startTime: "2026-08-30T03:44:17Z"
+    terminating: 0
+    uncountedTerminatedPods: {}
+kind: List
+metadata:
+  resourceVersion: ""

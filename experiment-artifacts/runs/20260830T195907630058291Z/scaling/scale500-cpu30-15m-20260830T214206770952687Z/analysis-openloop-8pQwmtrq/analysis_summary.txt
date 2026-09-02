@@ -1,0 +1,14 @@
+Job ID: 1788126362522-100962148-0
+Summary throughput: 500.00111370946905 ops/s
+Summary measured count: 450000
+Time-series rows used: 449999
+Time-series origin: 2026-08-30T21:47:07.132632+00:00
+Scale decision: 2026-08-30T21:50:18.649353+00:00
+addShard complete: 2026-08-30T21:51:48.719780+00:00
+Resharding complete: 2026-08-30T21:52:18.791412+00:00
+MongoWaitQueueFullException log lines: 5159
+
+Phase latency summaries (ms):
+- Pre-scale (1 shard): n=95758, mean=3.960, p50=1.812, p95=5.164, p99=64.773, p99.9=242.198, max=364.803
+- Scaling 1 to 2: n=60070, mean=3.694, p50=1.885, p95=8.994, p99=49.447, p99.9=134.338, max=198.958
+- Post-scale (2 shards): n=294171, mean=3.451, p50=1.665, p95=5.036, p99=52.542, p99.9=168.771, max=293.740

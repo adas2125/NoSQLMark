@@ -1,0 +1,46 @@
+apiVersion: autoscaler.mongodb.io/v1alpha1
+kind: MongodAutoscaler
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"autoscaler.mongodb.io/v1alpha1","kind":"MongodAutoscaler","metadata":{"annotations":{},"labels":{"app.kubernetes.io/managed-by":"kustomize","app.kubernetes.io/name":"mongodboperator"},"name":"mongodautoscaler-sample","namespace":"mambo-mongod-cpu"},"spec":{"bitnami":{"namespace":"mambo-mongod-cpu","releaseName":"my-mongodb-sharded","servicePort":27017},"policy":{"cooldownSeconds":300,"cpuTargetPercent":60,"cpuTolerancePercent":10,"iowaitTargetPercent":30,"iowaitTolerancePercent":5,"window":"5m","writeHeavyTargetPercent":70},"prometheus":{"nodeExporterPort":9100,"url":"http://prometheus-operated.monitoring.svc.cluster.local:9090"},"replicaScaleBounds":{"maxReplicas":1,"minReplicas":1},"shardScaleBounds":{"maxShards":3,"minShards":1}}}
+  creationTimestamp: "2026-08-30T05:36:35Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: mongodboperator
+  name: mongodautoscaler-sample
+  namespace: mambo-mongod-cpu
+  resourceVersion: "10635426"
+  uid: 45416983-d998-43fc-894a-51229e3ae7b5
+spec:
+  bitnami:
+    namespace: mambo-mongod-cpu
+    releaseName: my-mongodb-sharded
+    servicePort: 27017
+  policy:
+    cooldownSeconds: 300
+    cpuTargetPercent: 60
+    cpuTolerancePercent: 10
+    iowaitTargetPercent: 30
+    iowaitTolerancePercent: 5
+    window: 5m
+    writeHeavyTargetPercent: 70
+  prometheus:
+    nodeExporterPort: 9100
+    url: http://prometheus-operated.monitoring.svc.cluster.local:9090
+  replicaScaleBounds:
+    maxReplicas: 1
+    minReplicas: 1
+  shardScaleBounds:
+    maxShards: 3
+    minShards: 1
+status:
+  lastDesiredReplicas: 1
+  lastDesiredShards: 3
+  lastObservedCPU: "139.220603"
+  lastObservedIOWait: "6.702699"
+  lastObservedWriteRatio: "0.000000"
+  lastScaleTime: "2026-08-30T05:48:35Z"
+  scalingPhase: Idle
+  targetShardIndex: -1

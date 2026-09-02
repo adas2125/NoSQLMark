@@ -1,0 +1,47 @@
+apiVersion: autoscaler.mongodb.io/v1alpha1
+kind: MongodAutoscaler
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"autoscaler.mongodb.io/v1alpha1","kind":"MongodAutoscaler","metadata":{"annotations":{},"labels":{"app.kubernetes.io/managed-by":"kustomize","app.kubernetes.io/name":"mongodboperator"},"name":"mongodautoscaler-sample","namespace":"mambo-mongod-cpu"},"spec":{"bitnami":{"namespace":"mambo-mongod-cpu","releaseName":"my-mongodb-sharded","servicePort":27017},"policy":{"cooldownSeconds":300,"cpuTargetPercent":60,"cpuTolerancePercent":10,"iowaitTargetPercent":30,"iowaitTolerancePercent":5,"window":"5m","writeHeavyTargetPercent":70},"prometheus":{"nodeExporterPort":9100,"url":"http://prometheus-operated.monitoring.svc.cluster.local:9090"},"replicaScaleBounds":{"maxReplicas":2,"minReplicas":1},"shardScaleBounds":{"maxShards":2,"minShards":1}}}
+  creationTimestamp: "2026-08-30T02:50:13Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: mongodboperator
+  name: mongodautoscaler-sample
+  namespace: mambo-mongod-cpu
+  resourceVersion: "10583474"
+  uid: de2fbdba-fee6-48ad-a695-e39fc5a669de
+spec:
+  bitnami:
+    namespace: mambo-mongod-cpu
+    releaseName: my-mongodb-sharded
+    servicePort: 27017
+  policy:
+    cooldownSeconds: 300
+    cpuTargetPercent: 60
+    cpuTolerancePercent: 10
+    iowaitTargetPercent: 30
+    iowaitTolerancePercent: 5
+    window: 5m
+    writeHeavyTargetPercent: 70
+  prometheus:
+    nodeExporterPort: 9100
+    url: http://prometheus-operated.monitoring.svc.cluster.local:9090
+  replicaScaleBounds:
+    maxReplicas: 2
+    minReplicas: 1
+  shardScaleBounds:
+    maxShards: 2
+    minShards: 1
+status:
+  lastDesiredReplicas: 2
+  lastDesiredShards: 2
+  lastObservedCPU: "113.265207"
+  lastObservedIOWait: "5.628427"
+  lastObservedWriteRatio: "0.000000"
+  lastScaleTime: "2026-08-30T02:56:59Z"
+  scalingPhase: ScalingUpAddingReplica
+  targetReplicaCount: 2
+  targetShardIndex: -1

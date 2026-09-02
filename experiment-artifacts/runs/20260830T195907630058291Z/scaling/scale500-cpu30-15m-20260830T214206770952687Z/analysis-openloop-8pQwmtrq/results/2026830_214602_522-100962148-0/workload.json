@@ -1,0 +1,52 @@
+{
+  "jobID" : "1788126362522-100962148-0",
+  "batchname" : "mambo-openloop-20260830T195907630058291Z-scale500-cpu30-15m-20260830T214206770952687Z",
+  "workload" : "CoreWorkload",
+  "dbname" : "MongoDbClient",
+  "dbproperties" : {
+    "mongodb.url" : "mongodb://root:mongodb123@my-mongodb-sharded:27017/ycsb?authSource=admin&readPreference=nearest&retryWrites=false&retryReads=false"
+  },
+  "target" : 500,
+  "nodes" : 1,
+  "worker" : 1,
+  "table" : "usertable",
+  "columnfamily" : "family",
+  "phase" : "transactional",
+  "asyncmode" : true,
+  "counts" : {
+    "recordcount" : 1000000,
+    "warmupcount" : 30000,
+    "operationcount" : 450000,
+    "insertcount" : 0,
+    "insertstart" : 0,
+    "fieldcount" : 10,
+    "fieldlength" : 100,
+    "readallfields" : true,
+    "writeallfields" : true
+  },
+  "proportions" : {
+    "readproportion" : 1,
+    "updateproportion" : 0,
+    "insertproportion" : 0,
+    "scanproportion" : 0,
+    "readmodifywriteproportion" : 0
+  },
+  "distributions" : {
+    "requestdistribution" : "zipfian",
+    "insertorder" : "hashed",
+    "fieldlengthdistribution" : "constant",
+    "fieldlengthhistogram" : "hist.txt",
+    "scanlengthdistribution" : "uniform",
+    "maxscanlength" : 1000,
+    "hotspotdatafraction" : 0.2,
+    "hotspotopnfraction" : 0.8,
+    "exponentialpercentile" : 95,
+    "exponentialfrac" : 0.8571428571
+  },
+  "loadgeneration" : {
+    "schedulingmethod" : "adaptive",
+    "interrequesttimedistribution" : "constant"
+  },
+  "logmeasurements" : true,
+  "logjvmstats" : false
+}

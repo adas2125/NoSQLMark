@@ -1,0 +1,5 @@
+timestamp,label,color
+2026-08-30T02:53:59.196256+00:00,Scale shards 1 to 2,tab:red
+2026-08-30T02:56:59.368236+00:00,Controller declared resharding complete,tab:blue
+2026-08-30T03:02:14.447024+00:00,Scale replicas 1 to 2,tab:green
+2026-08-30T03:04:14.665862+00:00,First replica-membership failure,tab:purple

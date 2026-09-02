@@ -1,0 +1,16 @@
+prometheus:
+  monitor:
+    enabled: true
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - i-00ecc4734204a6c6e
+                - i-0f4a2ec2693d23bd5
+                - i-091443c764376d8ba
+                - i-0c4d45abf9869abf0
