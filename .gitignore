@@ -142,3 +142,58 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 .Rproj.user
+
+### Mambo experiment preservation ###
+# Keep only the three selected timestamped runs. Ignore duplicate/scratch files
+# at experiment-artifacts/ itself and make new runs opt-in.
+/experiment-artifacts/*
+!/experiment-artifacts/runs/
+!/experiment-artifacts/runs/20260830T021735846574724Z/
+!/experiment-artifacts/runs/20260830T021735846574724Z/**
+!/experiment-artifacts/runs/20260830T050243549572918Z/
+!/experiment-artifacts/runs/20260830T050243549572918Z/**
+!/experiment-artifacts/runs/20260830T195907630058291Z/
+!/experiment-artifacts/runs/20260830T195907630058291Z/**
+
+# Redundant, non-portable, or credential-bearing run artifacts.
+/experiment-artifacts/**/rendered-mongodb.yaml
+/experiment-artifacts/**/final-mongodb-helm-values.yaml
+/experiment-artifacts/runs/**/load.log
+/experiment-artifacts/runs/**/ycsb/load.log
+/experiment-artifacts/runs/**/kubernetes-watch.log
+/experiment-artifacts/runs/**/final-pods.txt
+/experiment-artifacts/runs/**/final-pvcs.txt
+/experiment-artifacts/runs/**/run-env.sh
+/experiment-artifacts/runs/**/current-*-env.sh
+/experiment-artifacts/runs/**/mambo-openloop-job.scala
+/experiment-artifacts/runs/**/console-logs/repl-console.log
+
+# Preserve the single hotspot run, but omit its >1 GiB backend debug logs and
+# other credential-bearing inputs. Its CPU plot only needs metrics/cpu-by-pod.json.
+/hotspot-experiment-artifacts/*
+!/hotspot-experiment-artifacts/20260902T045221662210875Z/
+!/hotspot-experiment-artifacts/20260902T045221662210875Z/**
+/hotspot-experiment-artifacts/**/nosqlmark/backend-logs/
+/hotspot-experiment-artifacts/**/nosqlmark/client-logs/
+/hotspot-experiment-artifacts/**/nosqlmark/results/**/workload.json
+/hotspot-experiment-artifacts/**/manifests/mambo-hotspot-job.scala
+/hotspot-experiment-artifacts/**/logs/kubernetes-watch.log
+/hotspot-experiment-artifacts/**/snapshots/final-pods.txt
+/hotspot-experiment-artifacts/**/snapshots/final-pvcs.txt
+/hotspot-experiment-artifacts/**/run-env.sh
+
+# These selected logs override the general *.log rule above because the
+# existing plotting scripts require them. They include the lab connection URI;
+# keep this repository private until they are sanitized.
+!/experiment-artifacts/runs/20260830T021735846574724Z/controller.log
+!/experiment-artifacts/runs/20260830T021735846574724Z/ycsb/run_10_continuous.log
+!/experiment-artifacts/runs/20260830T050243549572918Z/controller.log
+!/experiment-artifacts/runs/20260830T050243549572918Z/ycsb/run_10_continuous.log
+!/experiment-artifacts/runs/20260830T195907630058291Z/scaling/scale500-cpu30-15m-20260830T214206770952687Z/analysis-openloop-8pQwmtrq/controller.log
+!/experiment-artifacts/runs/20260830T195907630058291Z/scaling/scale500-cpu30-15m-20260830T214206770952687Z/analysis-openloop-8pQwmtrq/console-logs/backbench-console.log
+!/experiment-artifacts/runs/20260830T195907630058291Z/scaling/scale500-cpu30-15m-20260830T214206770952687Z/analysis-openloop-8pQwmtrq/timeseries-20260830_212642.0.log
+!/experiment-artifacts/runs/20260830T195907630058291Z/scaling/scale500-cpu30-15m-20260830T214206770952687Z/analysis-openloop-8pQwmtrq/timeseries.log
+
+__pycache__/
+*.py[cod]
+*.orig
