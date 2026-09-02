@@ -1,0 +1,80 @@
+Terminal 1: Start MongoDB & Load Data (VM 1)
+The below code snippet sets up the MongoDB database, runs the YCSB loading against it to fill it with a read-only workload.
+
+cd /users/adas2125/NoSQLMark
+set -euo pipefail
+
+RUNDIR="$(mktemp -d /tmp/nosqlmark-mongodb-comparison.XXXXXX)"
+MONGO_PRIVATE_IP="10.10.1.1"
+MONGO_BASE="/tmp/nosqlmark-mongodb-tools"
+MONGOD="$MONGO_BASE/mongodb-linux-x86_64-ubuntu2404-8.0.12/bin/mongod"
+YCSB="$MONGO_BASE/ycsb-mongodb-binding-0.14.0-SNAPSHOT"
+
+mkdir -p "$RUNDIR/db"
+
+"$MONGOD" \
+  --dbpath "$RUNDIR/db" \
+  --bind_ip "127.0.0.1,$MONGO_PRIVATE_IP" \
+  --port 27020 \
+  --logpath "$RUNDIR/mongod.log" \
+  --pidfilepath "$RUNDIR/mongod.pid" \
+  --fork
+
+cd "$YCSB"
+
+./bin/ycsb.sh load mongodb \
+  -s \
+  -P workloads/workloadc \
+  -threads 1 \
+  -p "mongodb.url=mongodb://${MONGO_PRIVATE_IP}:27020/ycsb_manual_smoke?w=1&retryWrites=false&retryReads=false" \
+  -p recordcount=1000 \
+  -p fieldcount=1 \
+  -p fieldlength=100 \
+  | tee "$RUNDIR/ycsb-load.log"
+
+grep -E '^\[(OVERALL|INSERT|INSERT-FAILED)\], (RunTime|Operations|Return=)' \
+  "$RUNDIR/ycsb-load.log"
+echo "RUNDIR=$RUNDIR"
+cd /users/adas2125/NoSQLMark
+
+Terminal 1: Start Backend (VM 2)
+
+cd /users/adas2125/NoSQLMark
+java -jar artifacts/sbt-launch-0.13.8.jar \
+  'project backbench' run
+Terminal 2: Start REPL & Run Job (VM 2)
+'project repl'. This tells sbt to switch its current context to a sub-project named repl. This is the core action. In sbt, show fullClasspath prints the classpath with sbt's internal data types (like Attributed(...)). Using export instead prints the classpath as a clean, raw string of file paths separated by colons (or semicolons on Windows). The fullClasspath includes all compiled classes, internal resource directories, and external library dependencies (JARs) needed to run this project.
+cd /users/adas2125/NoSQLMark
+
+CPFILE="$(mktemp /tmp/nosqlmark-repl-classpath.XXXXXX)"
+
+java -jar artifacts/sbt-launch-0.13.8.jar \
+  'project repl' 'export fullClasspath' \
+  > "$CPFILE"
+
+CP="$(tail -n 1 "$CPFILE")"
+
+java -Xmx4G \
+  -Dlogback.configurationFile=config/logback.xml \
+  -cp "$CP" \
+  de.unihamburg.informatik.nosqlmark.repl.REPL
+
+:load artifacts/mongo_jobs.scala
+
+Run 1: asynchronous mode
+Terminal 2 (VM 2)
+
+nc.submitJob(asyncExperiment)
+Terminal 1 (VM 1)
+
+(
+  PID="$(cat "$RUNDIR/mongod.pid")"
+  trap 'kill -CONT "$PID" 2>/dev/null || true' EXIT INT TERM
+  sleep 10
+  echo "pause-start $(date -Ins)"
+  kill -STOP "$PID"
+  sleep 1
+  kill -CONT "$PID"
+  echo "pause-end $(date -Ins)"
+  trap - EXIT INT TERM
+) | tee "$RUNDIR/async-pause.log"
