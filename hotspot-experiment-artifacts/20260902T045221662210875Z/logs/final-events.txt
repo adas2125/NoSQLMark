@@ -1,0 +1,56 @@
+LAST SEEN   TYPE      REASON                   OBJECT                                                           MESSAGE
+42m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-ctncn           Created container: node-exporter
+42m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-22bwc           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-22bwc to i-0c4d45abf9869abf0
+42m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-22bwc
+42m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-ctncn
+42m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-sm6pn           Started container node-exporter
+42m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-hmqwk
+42m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-ctncn           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+42m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-22bwc           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+42m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-22bwc           Created container: node-exporter
+42m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-22bwc           Started container node-exporter
+42m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-sm6pn           Created container: node-exporter
+42m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-ctncn           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-ctncn to i-00ecc4734204a6c6e
+42m         Normal    Created                  pod/mambo-node-exporter-prometheus-node-exporter-hmqwk           Created container: node-exporter
+42m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-ctncn           Started container node-exporter
+42m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-hmqwk           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-hmqwk to i-091443c764376d8ba
+42m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-hmqwk           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+42m         Normal    SuccessfulCreate         daemonset/mambo-node-exporter-prometheus-node-exporter           Created pod: mambo-node-exporter-prometheus-node-exporter-sm6pn
+42m         Normal    Started                  pod/mambo-node-exporter-prometheus-node-exporter-hmqwk           Started container node-exporter
+42m         Normal    Scheduled                pod/mambo-node-exporter-prometheus-node-exporter-sm6pn           Successfully assigned mambo-mongod-cpu/mambo-node-exporter-prometheus-node-exporter-sm6pn to i-0f4a2ec2693d23bd5
+42m         Normal    Pulled                   pod/mambo-node-exporter-prometheus-node-exporter-sm6pn           Container image "quay.io/prometheus/node-exporter:v1.12.1" already present on machine
+42m         Normal    ScalingReplicaSet        deployment/mongodb-exporter                                      Scaled up replica set mongodb-exporter-7fd8d98647 from 0 to 1
+42m         Normal    Scheduled                pod/mongodb-exporter-7fd8d98647-29w5t                            Successfully assigned mambo-mongod-cpu/mongodb-exporter-7fd8d98647-29w5t to i-00ecc4734204a6c6e
+42m         Normal    Pulling                  pod/mongodb-exporter-7fd8d98647-29w5t                            Pulling image "bitnami/mongodb-exporter:latest"
+42m         Normal    SuccessfulCreate         replicaset/mongodb-exporter-7fd8d98647                           Created pod: mongodb-exporter-7fd8d98647-29w5t
+42m         Normal    Scheduled                pod/mongodb-exporter-7f6f4d9c8c-xrq6p                            Successfully assigned mambo-mongod-cpu/mongodb-exporter-7f6f4d9c8c-xrq6p to i-063b793db694be24c
+42m         Normal    ScalingReplicaSet        deployment/mongodb-exporter                                      Scaled up replica set mongodb-exporter-7f6f4d9c8c from 0 to 1
+42m         Normal    SuccessfulCreate         replicaset/mongodb-exporter-7f6f4d9c8c                           Created pod: mongodb-exporter-7f6f4d9c8c-xrq6p
+42m         Normal    Pulling                  pod/mongodb-exporter-7f6f4d9c8c-xrq6p                            Pulling image "bitnami/mongodb-exporter:latest"
+42m         Normal    Pulled                   pod/mongodb-exporter-7fd8d98647-29w5t                            Successfully pulled image "bitnami/mongodb-exporter:latest" in 2.755s (2.755s including waiting). Image size: 47115156 bytes.
+42m         Normal    Started                  pod/mongodb-exporter-7fd8d98647-29w5t                            Started container mongodb-exporter
+42m         Normal    Created                  pod/mongodb-exporter-7fd8d98647-29w5t                            Created container: mongodb-exporter
+42m         Normal    Pulled                   pod/mongodb-exporter-7f6f4d9c8c-xrq6p                            Successfully pulled image "bitnami/mongodb-exporter:latest" in 3.36s (3.36s including waiting). Image size: 47115156 bytes.
+42m         Normal    Created                  pod/mongodb-exporter-7f6f4d9c8c-xrq6p                            Created container: mongodb-exporter
+42m         Normal    Started                  pod/mongodb-exporter-7f6f4d9c8c-xrq6p                            Started container mongodb-exporter
+42m         Normal    Killing                  pod/mongodb-exporter-7fd8d98647-29w5t                            Stopping container mongodb-exporter
+42m         Normal    SuccessfulDelete         replicaset/mongodb-exporter-7fd8d98647                           Deleted pod: mongodb-exporter-7fd8d98647-29w5t
+42m         Normal    ScalingReplicaSet        deployment/mongodb-exporter                                      Scaled down replica set mongodb-exporter-7fd8d98647 from 1 to 0
+30m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard1-data                       create Pod my-mongodb-sharded-shard1-data-0 in StatefulSet my-mongodb-sharded-shard1-data successful
+30m         Normal    SuccessfulCreate         statefulset/my-mongodb-sharded-shard1-data                       create Claim datadir-my-mongodb-sharded-shard1-data-0 Pod my-mongodb-sharded-shard1-data-0 in StatefulSet my-mongodb-sharded-shard1-data success
+30m         Normal    ExternalProvisioning     persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+30m         Normal    Provisioning             persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   External provisioner is provisioning volume for claim "mambo-mongod-cpu/datadir-my-mongodb-sharded-shard1-data-0"
+30m         Normal    WaitForFirstConsumer     persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   waiting for first consumer to be created before binding
+29m         Normal    ProvisioningSucceeded    persistentvolumeclaim/datadir-my-mongodb-sharded-shard1-data-0   Successfully provisioned volume pvc-ff87f630-8f7a-4a70-8a22-c7317510316a
+29m         Normal    Scheduled                pod/my-mongodb-sharded-shard1-data-0                             Successfully assigned mambo-mongod-cpu/my-mongodb-sharded-shard1-data-0 to i-0c4d45abf9869abf0
+29m         Normal    SuccessfulAttachVolume   pod/my-mongodb-sharded-shard1-data-0                             AttachVolume.Attach succeeded for volume "pvc-ff87f630-8f7a-4a70-8a22-c7317510316a"
+29m         Normal    Created                  pod/my-mongodb-sharded-shard1-data-0                             Created container: mongodb
+29m         Normal    Started                  pod/my-mongodb-sharded-shard1-data-0                             Started container mongodb
+29m         Normal    Pulled                   pod/my-mongodb-sharded-shard1-data-0                             Container image "docker.io/bitnamilegacy/mongodb-sharded:8.0.13-debian-12-r0" already present on machine
+29m         Normal    SuccessfulCreate         job/addshard-my-mongodb-sharded-shard-1                          Created pod: addshard-my-mongodb-sharded-shard-1-c2mtd
+29m         Normal    Scheduled                pod/addshard-my-mongodb-sharded-shard-1-c2mtd                    Successfully assigned mambo-mongod-cpu/addshard-my-mongodb-sharded-shard-1-c2mtd to i-0f4a2ec2693d23bd5
+29m         Normal    Pulled                   pod/addshard-my-mongodb-sharded-shard-1-c2mtd                    Container image "mongo:6.0" already present on machine
+29m         Normal    Created                  pod/addshard-my-mongodb-sharded-shard-1-c2mtd                    Created container: addshard
+29m         Normal    Started                  pod/addshard-my-mongodb-sharded-shard-1-c2mtd                    Started container addshard
+28m         Normal    Completed                job/addshard-my-mongodb-sharded-shard-1                          Job completed
+28m         Warning   Unhealthy                pod/my-mongodb-sharded-shard1-data-0                             Readiness probe failed: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017

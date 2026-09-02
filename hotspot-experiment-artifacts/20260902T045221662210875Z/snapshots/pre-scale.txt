@@ -1,0 +1,164 @@
+{
+  capturedAt: ISODate('2026-09-02T04:59:43.995Z'),
+  hotKey: 'user6284781860667377211',
+  document: {
+    _id: 'user6284781860667377211'
+  }
+}
+{
+  shards: [
+    {
+      _id: 'my-mongodb-sharded-shard-0',
+      host: 'my-mongodb-sharded-shard-0/my-mongodb-sharded-shard0-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017',
+      state: 1,
+      topologyTime: Timestamp({ t: 1788301254, i: 19 }),
+      replSetConfigVersion: Long('2')
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1788325183, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('zKkSzaZBr+DzrmHlTKeI09mKDd0=', 0),
+      keyId: Long('7680694898814615568')
+    }
+  },
+  operationTime: Timestamp({ t: 1788325183, i: 1 })
+}
+{
+  mode: 'full',
+  inBalancerRound: false,
+  numBalancerRounds: Long('2400'),
+  term: Long('4'),
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1788325183, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('zKkSzaZBr+DzrmHlTKeI09mKDd0=', 0),
+      keyId: Long('7680694898814615568')
+    }
+  },
+  operationTime: Timestamp({ t: 1788325183, i: 1 })
+}
+{
+  logicalCount: 1000000
+}
+{
+  queryPlanner: {
+    winningPlan: {
+      stage: 'SINGLE_SHARD',
+      shards: [
+        {
+          explainVersion: '1',
+          shardName: 'my-mongodb-sharded-shard-0',
+          connectionString: 'my-mongodb-sharded-shard-0/my-mongodb-sharded-shard0-data-0.my-mongodb-sharded-headless.mambo-mongod-cpu.svc.cluster.local:27017',
+          serverInfo: {
+            host: 'my-mongodb-sharded-shard0-data-0',
+            port: 27017,
+            version: '8.0.13',
+            gitVersion: '8dc5cd2a30c4524132e2d44bb314544dc477e611'
+          },
+          namespace: 'ycsb.usertable',
+          parsedQuery: {
+            _id: {
+              '$eq': 'user6284781860667377211'
+            }
+          },
+          indexFilterSet: false,
+          queryHash: '9B5DE45B',
+          planCacheShapeHash: '9B5DE45B',
+          planCacheKey: 'B4738D99',
+          optimizationTimeMillis: 0,
+          maxIndexedOrSolutionsReached: false,
+          maxIndexedAndSolutionsReached: false,
+          maxScansToExplodeReached: false,
+          prunedSimilarIndexes: false,
+          winningPlan: {
+            isCached: false,
+            stage: 'EXPRESS_IXSCAN',
+            keyPattern: '{ _id: 1 }',
+            indexName: '_id_'
+          },
+          rejectedPlans: []
+        }
+      ]
+    }
+  },
+  executionStats: {
+    nReturned: 1,
+    executionTimeMillis: 1,
+    totalKeysExamined: 1,
+    totalDocsExamined: 1,
+    executionStages: {
+      stage: 'SINGLE_SHARD',
+      nReturned: 1,
+      executionTimeMillis: 1,
+      totalKeysExamined: 1,
+      totalDocsExamined: 1,
+      totalChildMillis: Long('0'),
+      shards: [
+        {
+          shardName: 'my-mongodb-sharded-shard-0',
+          executionSuccess: true,
+          nReturned: 1,
+          executionTimeMillis: 0,
+          totalKeysExamined: 1,
+          totalDocsExamined: 1,
+          executionStages: {
+            isCached: false,
+            stage: 'EXPRESS_IXSCAN',
+            keyPattern: '{ _id: 1 }',
+            indexName: '_id_',
+            keysExamined: 1,
+            docsExamined: 1,
+            nReturned: 1
+          }
+        }
+      ]
+    }
+  },
+  serverInfo: {
+    host: 'my-mongodb-sharded-mongos-7cd99f4d79-2pmc5',
+    port: 27017,
+    version: '8.0.13',
+    gitVersion: '8dc5cd2a30c4524132e2d44bb314544dc477e611'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  command: {
+    find: 'usertable',
+    filter: {
+      _id: 'user6284781860667377211'
+    },
+    lsid: {
+      id: UUID('0f3a5648-fc7b-4537-b2d0-fbb694675f15')
+    },
+    '$clusterTime': {
+      clusterTime: Timestamp({ t: 1788325192, i: 4 }),
+      signature: {
+        hash: Binary.createFromBase64('Zgq0wAnuTsgblqPqFbIHGATKV8Y=', 0),
+        keyId: Long('7680694898814615568')
+      }
+    },
+    '$db': 'ycsb'
+  },
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1788325192, i: 4 }),
+    signature: {
+      hash: Binary.createFromBase64('Zgq0wAnuTsgblqPqFbIHGATKV8Y=', 0),
+      keyId: Long('7680694898814615568')
+    }
+  },
+  operationTime: Timestamp({ t: 1788325191, i: 15 })
+}

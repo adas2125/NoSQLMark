@@ -1,0 +1,1 @@
+docker.io/b00611024/mongodb-autoscaler@sha256:d9fbf2cbdade42f828094c8e815f5c70bc74c605efff5ff8c63b0793c739d20d

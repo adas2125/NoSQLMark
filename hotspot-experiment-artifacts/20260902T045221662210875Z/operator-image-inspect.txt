@@ -1,0 +1,15 @@
+Name:      docker.io/b00611024/mongodb-autoscaler:test
+MediaType: application/vnd.oci.image.index.v1+json
+Digest:    sha256:d9fbf2cbdade42f828094c8e815f5c70bc74c605efff5ff8c63b0793c739d20d
+           
+Manifests: 
+  Name:        docker.io/b00611024/mongodb-autoscaler:test@sha256:2c1cf6ad2415001e17c23018d2a0c38305254e3456e883ae4707aed3d419aaa8
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/amd64
+               
+  Name:        docker.io/b00611024/mongodb-autoscaler:test@sha256:f5b1d240606be49474bc2f0576d0321c31945da5dc8d8aaf3b339061c9d529d7
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.type:   attestation-manifest
+    vnd.docker.reference.digest: sha256:2c1cf6ad2415001e17c23018d2a0c38305254e3456e883ae4707aed3d419aaa8

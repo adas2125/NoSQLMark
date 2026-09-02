@@ -1,0 +1,1 @@
+docker.io/bitnami/mongodb-exporter@sha256:ce342cf8bcc1c2dcfa85740c55e7da53cb98d3b77b290c1a7889a087d6245743
